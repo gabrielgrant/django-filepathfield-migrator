@@ -1,5 +1,3 @@
-django-filepathfield-migrator provides management commands to fix
-FilePathFields after migration.
 
 Django's FilePathField allows selecting files relative to a base path,
 but stores the selected file in the database as an absolute path. This

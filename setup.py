@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(
-    name='django-portfolio-pages',
+    name='django-filepathfield-migrator',
     version='0.1.0dev',
     author='Gabriel Grant',
     packages=[
