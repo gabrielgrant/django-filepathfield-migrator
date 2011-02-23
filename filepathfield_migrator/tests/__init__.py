@@ -1,0 +1,1 @@
+from filepathfield_migrator.tests.test_fix_filepathfields import FixFilePathFieldTests
