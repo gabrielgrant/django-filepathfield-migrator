@@ -1,0 +1,44 @@
+django-filepathfield-migrator provides management commands to fix
+FilePathFields after migration.
+
+Django's FilePathField allows selecting files relative to a base path,
+but stores the selected file in the database as an absolute path. This
+allows changing the base path without breaking links to previously
+selected files, but causes problems when migrating data from one environment
+to another (for example, via dumpdata/loaddata fixtures)[1]
+
+[1]: http://code.djangoproject.com/ticket/6896
+
+django-filepathfield-migrator provides management commands to fix
+FilePathFields after migration.
+
+Installation
+============
+
+ - put django-filepathfield-migrator on your Python Path (pip install, symlink or
+git checkout)
+ - put `filepathfield_migrator` in your list of installed apps
+
+Usage
+=====
+
+Much like dumpdata/loaddata, there are two commands to be run: one on the
+source django installation, and the other on the destination django
+installation. For example, the following could be used to move data
+from machine `dev` to `staging`, fixing FilePathField data for the
+new environment:
+
+
+On dev:
+
+    python manage.py dumpdata > data.json
+    python manage.py dumpbase_filepathfields > filepathfield_migration.json
+    rcp data.json example.com:/~/my-project/
+    rcp filepathfield_migration.json example.com:/~/my-project/
+
+On staging
+
+    python manage.py loaddata data.json
+    python manage.py rebase_filepathfields filepathfield_migration.json
+
+
