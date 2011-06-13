@@ -37,7 +37,7 @@ class Command(BaseCommand):
         if base_path_dump == '-':
             f = sys.stdin
         else:
-            f = open(base_path)
+            f = open(base_path_dump)
         for field, old_base in json.load(f):
             app_name, model_name, field_name = field.split('.')
             model = get_model(app_name, model_name)
